@@ -2,12 +2,35 @@
 name: video-editing
 description: Video and audio editing via natural language — cut, caption, silence removal, scene detection, stabilisation, colour grading, background removal, smart reframing, audio processing, and cloud API integrations. Free local tools with optional paid cloud tiers.
 version: 2.0.0
-category: creative
+author: Nathan Williams
+license: MIT
+platforms: [linux, macos]
+metadata:
+  hermes:
+    tags: [Video, Audio, Editing, ffmpeg, Captions, Subtitles, Transcription, Whisper, Scene-Detection, Stabilisation, Colour-Grading, Background-Removal, Smart-Reframe, Podcast, Montage]
+    category: creative
+    related_skills: [ascii-video, manim-video, p5js, songwriting-and-ai-music, heartmula]
+    requires_toolsets: [terminal]
 ---
 
 # Video & Audio Editing Skill
 
 Programmatic video and audio editing toolkit. Edit media by describing what you want in natural language. Works with any agent — Claude, GPT, Gemini, open-source models, or custom frameworks.
+
+## When to Use
+
+Load this skill when the user:
+- Shares a video or audio file and asks to edit it (trim, cut, concatenate, merge)
+- Requests captions, subtitles, or transcription
+- Wants to remove silences or dead air from a recording
+- Asks to stabilise shaky footage or remove a background
+- Wants to reframe video for a specific platform (TikTok, Instagram Reels, YouTube Shorts)
+- Requests colour grading or visual enhancement
+- Asks to mix audio tracks, normalise levels, or adjust volume
+- Wants to generate tones, ambient pads, or background music beds
+- Asks to convert media formats or export for a specific platform
+- Mentions podcast production, montage assembly, or crossfade transitions
+- Sends a video via a messaging platform and asks for edits
 
 ## Quick Reference
 
@@ -575,6 +598,28 @@ The `alpha` expression: fades in from t=0.5 to t=1.5, holds at 1.0, fades out fr
 - Normalise audio before mixing to avoid clipping and inconsistent levels
 - Always verify output metadata (duration, codec, channels) matches expectations after audio edits
 - Use `-v` / `--verbose` for detailed ffmpeg output during debugging
+
+## Verification
+
+After every edit, confirm the output is correct:
+
+1. **Run `info analyze` on the output file** and compare against expected values:
+   - Duration matches expected length (±1s for trim/concat operations)
+   - Resolution and framerate match the target or source
+   - Audio codec, channels, and sample rate are correct
+   - File size is reasonable for the duration (typically 5-50 MB/min for H.264)
+   - RMS level is in a healthy range (-20 to -6 dB for normalised audio)
+
+2. **Visual inspection** (if agent has vision capability):
+   - Generate a contact sheet: `python scripts/video_toolkit.py frames grid OUTPUT -o /tmp/review.jpg`
+   - Check for black frames at edit points, correct framing, readable captions
+   - For audio: generate waveform and spectrogram PNGs and inspect them
+
+3. **For agents without vision**, extract metadata and deliver review assets:
+   - Extract key frames and list them (timestamps confirm continuity)
+   - Deliver contact sheet, waveform, and spectrogram to the user for manual confirmation
+
+4. **If issues are found**, fix and re-verify before delivering the final file.
 
 ## Related Capabilities
 

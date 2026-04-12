@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
-video_toolkit.py — Command-line video editing toolkit for Hermes Agent.
+video_toolkit.py — Command-line video editing toolkit.
+
+Works standalone or alongside audio_toolkit.py for advanced audio operations.
+For audio editing (trim, fade, normalise, pitch shift, mix, generate, sync),
+see audio_toolkit.py in the same directory.
 
 Usage:
     python video_toolkit.py info analyze INPUT
@@ -216,7 +220,12 @@ def cmd_edit_speed(args):
 
 
 def cmd_edit_audio(args):
-    """Add or replace audio track with mixing control."""
+    """Add or replace audio track with mixing control.
+    
+    For advanced audio operations (normalise, pitch shift, fade, generate,
+    sidechain ducking, waveforms, spectrograms), use audio_toolkit.py instead:
+        python audio_toolkit.py sync VIDEO --audio MUSIC --mix 0.3 --duck
+    """
     inp = Path(args.input)
     audio = Path(args.audio)
     out = ensure_output(args.output)

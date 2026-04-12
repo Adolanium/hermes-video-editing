@@ -1,6 +1,6 @@
 ---
 name: video-editing
-description: Professional video and audio editing via natural language — cut, caption, silence removal, scene detection, stabilisation, colour grading, background removal, smart reframing, audio processing, and cloud API integrations. Free local tools with optional paid cloud tiers.
+description: Video and audio editing via natural language — cut, caption, silence removal, scene detection, stabilisation, colour grading, background removal, smart reframing, audio processing, and cloud API integrations. Free local tools with optional paid cloud tiers.
 version: 2.0.0
 category: creative
 ---

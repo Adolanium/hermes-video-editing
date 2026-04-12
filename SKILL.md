@@ -575,3 +575,104 @@ The `alpha` expression: fades in from t=0.5 to t=1.5, holds at 1.0, fades out fr
 - Normalise audio before mixing to avoid clipping and inconsistent levels
 - Always verify output metadata (duration, codec, channels) matches expectations after audio edits
 - Use `-v` / `--verbose` for detailed ffmpeg output during debugging
+
+## Related Capabilities
+
+This toolkit is part of a family of complementary skills. Each produces MP4 output that chains directly into the video and audio toolkits.
+
+### ASCII Video (creative/ascii-video)
+
+Terminal-style character art video with audio-reactive visualisers, generative animations, and shader effects.
+
+**What it adds:**
+- Video-to-ASCII conversion (recreates footage using text characters)
+- Audio-reactive music visualisers (FFT-driven rings, spirals, tunnels)
+- Generative ASCII art animations (particles, noise fields, cellular automata)
+- Hybrid mode: ASCII overlay composited onto regular video
+- Rich shader pipeline: CRT glow, bloom, chromatic aberration, glitch, retro scanlines
+
+**Integration workflows:**
+
+1. ASCII visualiser as B-roll in a montage:
+   ```bash
+   # Generate ASCII visualiser from audio
+   python ascii_project.py  # outputs ascii_visualiser.mp4
+   
+   # Combine with regular footage using this toolkit
+   python scripts/video_toolkit.py edit concat footage.mp4 ascii_visualiser.mp4 -o combined.mp4
+   python scripts/audio_toolkit.py sync combined.mp4 --audio music.mp3 --mix 0.4 -o final.mp4
+   ```
+
+2. ASCII title sequence for a video:
+   ```bash
+   # Generate ASCII title animation (manim or ascii-video)
+   # Then concat as intro
+   python scripts/video_toolkit.py edit concat ascii_intro.mp4 main_content.mp4 -o with_intro.mp4
+   ```
+
+3. Audio-reactive background layer:
+   ```bash
+   # Use audio_toolkit to extract and prep audio
+   python scripts/audio_toolkit.py extract video.mp4 --format wav -o audio.wav
+   # Feed to ASCII video skill for visualiser generation
+   # Overlay visualiser on original video with blend
+   ```
+
+### Manim Video (creative/manim-video)
+
+Mathematical and technical animations — 3Blue1Brown-style explainers, algorithm visualisations, equation derivations, architecture diagrams.
+
+**What it adds:**
+- Animated mathematical proofs and derivations (LaTeX-rendered equations)
+- Algorithm and data structure visualisations
+- Animated architecture/system diagrams
+- 3D surface and parametric curve visualisations
+- Data stories with animated charts and counters
+
+**Integration workflows:**
+
+1. Manim explainer segment in a larger video:
+   ```bash
+   # Render Manim scene to MP4
+   manim -qh script.py Scene1_Introduction Scene2_CoreConcept
+   
+   # Stitch scenes together
+   ffmpeg -f concat -safe 0 -i concat.txt -c copy manim_explainer.mp4
+   
+   # Add narration audio bed
+   python scripts/audio_toolkit.py generate pad --notes C3,E4,G4 --duration 60 --lowpass 350 -o bg_music.mp3
+   python scripts/audio_toolkit.py sync manim_explainer.mp4 --audio bg_music.mp3 --mix 0.2 --duck -o explainer_with_music.mp4
+   
+   # Concat with other footage
+   python scripts/video_toolkit.py edit concat intro.mp4 explainer_with_music.mp4 outro.mp4 -o final.mp4
+   ```
+
+2. Manim diagram as overlay in a screen recording:
+   ```bash
+   # Render Manim diagram with transparent background (Manim supports -t flag)
+   # Then composite onto footage using ffmpeg overlay filter
+   ```
+
+3. Full production pipeline with all three skills:
+   ```bash
+   # 1. Generate ASCII title sequence (ascii-video skill)
+   # 2. Render Manim technical content (manim-video skill)
+   # 3. Combine with stock footage (this toolkit — trim, concat, crossfade)
+   # 4. Add generated ambient music (audio_toolkit pad generation)
+   # 5. Normalise and export for platform (audio_toolkit + video_toolkit export)
+   ```
+
+### Chaining Pattern
+
+All three skills produce MP4 output. The general chaining pattern is:
+
+```
+SOURCE(S) → GENERATE/RENDER → POST-PROCESS → ASSEMBLE → EXPORT
+```
+
+1. **Generate**: ASCII video, Manim scenes, or stock footage downloads
+2. **Post-process**: Colour grade (video_toolkit enhance), normalise audio (audio_toolkit normalise), trim to length
+3. **Assemble**: Concat with transitions (video_toolkit concat or ffmpeg xfade), sync audio (audio_toolkit sync)
+4. **Export**: Platform preset (video_toolkit export), or final encode with custom settings
+
+Each skill is independently useful. Together they cover the full spectrum from artistic (ASCII) through technical (Manim) to conventional production editing (this toolkit).

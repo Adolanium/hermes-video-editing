@@ -263,6 +263,37 @@ For audio tasks in particular, text-only models are equally effective since the 
 
 All functional operations work identically regardless of model. The difference is in quality assurance — vision models can autonomously verify visual output, while text-only models rely on metadata and the user's own review.
 
+## Sibling Skills
+
+This toolkit pairs with two other creative skills that produce MP4 output. Chain them together for full-spectrum production.
+
+### ascii-video
+
+Terminal-style character art video with audio-reactive visualisers, generative animations, and shader effects (CRT glow, bloom, glitch). Use for: retro aesthetics, music visualisers, title sequences, ASCII overlays on footage.
+
+```
+audio.wav → ascii-video → visualiser.mp4 → video_toolkit concat → final.mp4
+```
+
+### manim-video
+
+3Blue1Brown-style mathematical and technical animations. Animated proofs, algorithm visualisations, architecture diagrams, data stories. Use for: explainer videos, technical content, educational material.
+
+```
+concept → manim render → explainer.mp4 → audio_toolkit sync → video_toolkit export → final.mp4
+```
+
+### Full Pipeline Example
+
+Combine all three for a complete production:
+
+1. **Generate** — ASCII title sequence (ascii-video) + Manim technical content (manim-video)
+2. **Post-process** — Colour grade and trim (video_toolkit), normalise audio (audio_toolkit)
+3. **Assemble** — Concat with crossfade transitions (video_toolkit + ffmpeg xfade), sync audio with ducking (audio_toolkit)
+4. **Export** — Platform preset (video_toolkit export)
+
+Each skill works standalone. Together they cover artistic (ASCII) through technical (Manim) to conventional production editing (this toolkit).
+
 ## Requirements
 
 - Python 3.10+

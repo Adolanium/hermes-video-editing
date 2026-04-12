@@ -1,0 +1,8 @@
+# Dependencies are installed via pip (see install.sh)
+# No requirements.txt needed — install.sh handles selective installation
+#
+# Core:
+#   moviepy ffmpeg-python opencv-python-headless Pillow numpy
+#
+# Optional AI:
+#   openai-whisper scenedetect[opencv] torch torchaudio backgroundremover rembg

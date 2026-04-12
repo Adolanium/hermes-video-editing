@@ -1,0 +1,91 @@
+# Platform Export Presets
+# Used by: python scripts/video_toolkit.py edit export INPUT --preset <name>
+
+presets:
+  instagram-reel:
+    width: 1080
+    height: 1920
+    fps: 30
+    video_bitrate: "5M"
+    audio_bitrate: "128k"
+    codec: libx264
+    audio_codec: aac
+    max_duration: 90
+    notes: "9:16 portrait, max 90 seconds"
+
+  instagram-post:
+    width: 1080
+    height: 1080
+    fps: 30
+    video_bitrate: "5M"
+    audio_bitrate: "128k"
+    codec: libx264
+    audio_codec: aac
+    max_duration: 60
+    notes: "1:1 square, max 60 seconds"
+
+  youtube:
+    width: 1920
+    height: 1080
+    fps: 30
+    video_bitrate: "10M"
+    audio_bitrate: "192k"
+    codec: libx264
+    audio_codec: aac
+    max_duration: null
+    notes: "16:9 standard, high quality"
+
+  youtube-shorts:
+    width: 1080
+    height: 1920
+    fps: 30
+    video_bitrate: "5M"
+    audio_bitrate: "128k"
+    codec: libx264
+    audio_codec: aac
+    max_duration: 60
+    notes: "9:16 portrait, max 60 seconds"
+
+  tiktok:
+    width: 1080
+    height: 1920
+    fps: 30
+    video_bitrate: "5M"
+    audio_bitrate: "128k"
+    codec: libx264
+    audio_codec: aac
+    max_duration: 600
+    notes: "9:16 portrait, max 10 minutes"
+
+  twitter:
+    width: 1280
+    height: 720
+    fps: 30
+    video_bitrate: "5M"
+    audio_bitrate: "128k"
+    codec: libx264
+    audio_codec: aac
+    max_duration: 140
+    notes: "16:9, max 2:20"
+
+  facebook:
+    width: 1280
+    height: 720
+    fps: 30
+    video_bitrate: "5M"
+    audio_bitrate: "128k"
+    codec: libx264
+    audio_codec: aac
+    max_duration: null
+    notes: "16:9 or 1:1 supported"
+
+  telegram:
+    width: 1280
+    height: 720
+    fps: 30
+    video_bitrate: "4M"
+    audio_bitrate: "128k"
+    codec: libx264
+    audio_codec: aac
+    max_duration: null
+    notes: "Optimised for streaming, 50MB file limit for bots"
